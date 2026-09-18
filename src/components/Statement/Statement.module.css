@@ -1,0 +1,93 @@
+.wrap {
+  padding-top: var(--module);
+  background:
+    radial-gradient(ellipse 40% 75% at 0% 50%, rgba(168, 21, 8, 0.38) 0%, transparent 68%),
+    radial-gradient(ellipse 40% 75% at 100% 50%, rgba(168, 21, 8, 0.38) 0%, transparent 68%),
+    var(--color-black);
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.frame {
+  position: relative;
+  overflow: hidden;
+  grid-column: 2 / span 2;
+  grid-row: 1;
+}
+
+.image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 60% 35%;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(10, 9, 8, 0.55) 0%, rgba(10, 9, 8, 0.1) 50%, rgba(10, 9, 8, 0.4) 100%);
+}
+
+.marqueeFrame {
+  grid-column: 2 / span 2;
+  grid-row: 2;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+}
+
+.track {
+  display: flex;
+  width: max-content;
+}
+
+.group {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  animation: marquee 75s linear infinite;
+}
+
+.phrase {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  color: var(--color-cream);
+  font-size: calc(var(--module) / 2);
+  line-height: 1;
+  white-space: nowrap;
+  padding: 0 0.35em;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .group {
+    animation: none;
+  }
+}
+
+@media (max-width: 860px) {
+  .frame,
+  .marqueeFrame {
+    grid-column: 1 / -1;
+  }
+}

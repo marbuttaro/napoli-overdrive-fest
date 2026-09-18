@@ -1,0 +1,56 @@
+:root {
+  /* Palette — derivata dal logo e dalle grafiche termiche (caschi, F1, ruote) */
+  --color-black: #0a0908;
+  --color-black-soft: #141210;
+  --color-charcoal: #1e1b18;
+
+  --color-red: #d2392f;
+  --color-red-bright: #ff3b2f;
+  --color-red-dark: #a81508;
+
+  --color-orange: #ff8c3a;
+  --color-magenta: #d2318f;
+
+  --color-cream: #fdfdf0;
+  --color-white: #ffffff;
+
+  --color-muted: #a8a29a;
+  --color-muted-dark: #6b6560;
+
+  /* Ruoli semantici */
+  --bg-page: var(--color-black);
+  --bg-elevated: var(--color-black-soft);
+  --bg-card: var(--color-charcoal);
+  --text-primary: var(--color-cream);
+  --text-secondary: var(--color-muted);
+  --accent-primary: var(--color-red-bright);
+  --accent-secondary: var(--color-orange);
+  --border-subtle: rgba(253, 253, 240, 0.1);
+
+  /* Tipografia */
+  --font-display: 'Bebas Neue', 'Arial Narrow', sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Forme — rettangoli stondati coerenti col logo */
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 32px;
+  --radius-pill: 999px;
+
+  /* Spaziatura */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 7rem;
+
+  --content-width: 1240px;
+
+  /* Modulo della griglia — 1/4 della larghezza di .site-grid. Ogni spaziatura verticale
+     prima di un module-grid deve essere un multiplo di questo valore, altrimenti i moduli
+     di quella sezione sfasano rispetto alla griglia globale. */
+  --module: 25cqw;
+
+  --shadow-glow-red: 0 0 60px rgba(255, 59, 47, 0.35);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}

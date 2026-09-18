@@ -1,0 +1,111 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-black);
+}
+
+.stage {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 42%, transparent 0%, rgba(10, 9, 8, 0.55) 70%, rgba(10, 9, 8, 0.92) 100%),
+    linear-gradient(180deg, rgba(10, 9, 8, 0.75) 0%, transparent 22%, transparent 68%, rgba(10, 9, 8, 0.95) 100%);
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1em;
+  color: var(--color-cream);
+  font-size: clamp(2.2rem, 6.5vw, 4.2rem);
+}
+
+.logo {
+  width: min(90vw, 620px);
+  height: auto;
+  filter: drop-shadow(0 0 40px rgba(255, 59, 47, 0.45));
+  margin-top: 0.1em;
+}
+
+.date {
+  font-family: var(--font-display);
+  letter-spacing: 0.15em;
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+  color: var(--accent-primary);
+  text-transform: uppercase;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  justify-content: center;
+  margin-top: var(--space-sm);
+}
+
+.scrollHint {
+  position: absolute;
+  bottom: var(--space-md);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  width: 28px;
+  height: 44px;
+  border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-pill);
+  display: flex;
+  justify-content: center;
+  padding-top: 8px;
+}
+
+.scrollHint span {
+  width: 4px;
+  height: 10px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-primary);
+  animation: scrollDown 1.6s var(--ease-out) infinite;
+}
+
+@keyframes scrollDown {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+@media (max-width: 640px) {
+  .title {
+    gap: 0.3em;
+  }
+}
