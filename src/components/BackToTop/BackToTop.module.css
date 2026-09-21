@@ -1,0 +1,25 @@
+.wrap {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .wrap {
+    display: flex;
+    justify-content: center;
+    padding: var(--space-md);
+    border-top: 1px solid var(--border-subtle);
+  }
+}
+
+.top {
+  font-family: var(--font-display);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  transition: color 0.2s var(--ease-out);
+}
+
+.top:hover {
+  color: var(--accent-primary);
+}

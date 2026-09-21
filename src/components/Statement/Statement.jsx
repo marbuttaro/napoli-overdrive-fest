@@ -35,21 +35,36 @@ const Statement = () => {
 
     video.muted = true;
 
+    // Riparte sempre dall'inizio: sia al primo caricamento sia se la pagina
+    // viene ripristinata dalla cache di navigazione del browser (bfcache, es.
+    // tasto "indietro"), dove il video può restare fermo a metà invece di
+    // ricominciare come dopo un refresh vero e proprio.
+    const restart = () => {
+      video.currentTime = 0;
+      video.play().catch(() => {});
+    };
+
     const tryPlay = () => {
       if (video.paused) video.play().catch(() => {});
     };
 
-    tryPlay();
+    const onPageShow = (event) => {
+      if (event.persisted) restart();
+    };
+
+    restart();
     video.addEventListener('loadedmetadata', tryPlay);
     video.addEventListener('canplay', tryPlay);
     document.addEventListener('touchstart', tryPlay, { once: true, passive: true });
     document.addEventListener('click', tryPlay, { once: true });
+    window.addEventListener('pageshow', onPageShow);
 
     return () => {
       video.removeEventListener('loadedmetadata', tryPlay);
       video.removeEventListener('canplay', tryPlay);
       document.removeEventListener('touchstart', tryPlay);
       document.removeEventListener('click', tryPlay);
+      window.removeEventListener('pageshow', onPageShow);
     };
   }, []);
 

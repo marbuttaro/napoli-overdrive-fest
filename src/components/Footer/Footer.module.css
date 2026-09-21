@@ -43,4 +43,10 @@
     flex-direction: column;
     justify-content: center;
   }
+
+  /* "Torna su" si sposta subito dopo Contatti/Mappa e prima del footer (vedi
+     BackToTop, renderizzato in App.jsx) invece di stare dentro al footer. */
+  .top {
+    display: none;
+  }
 }

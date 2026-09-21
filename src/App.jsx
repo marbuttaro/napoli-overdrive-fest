@@ -5,6 +5,7 @@ import Gallery from './components/Gallery/Gallery';
 import Sponsors from './components/Sponsors/Sponsors';
 import Program from './components/Program/Program';
 import Contact from './components/Contact/Contact';
+import BackToTop from './components/BackToTop/BackToTop';
 import Footer from './components/Footer/Footer';
 import SiteGridLines from './components/SiteGridLines/SiteGridLines';
 
@@ -24,6 +25,7 @@ function App() {
             <Contact />
           </div>
         </main>
+        <BackToTop />
         <Footer />
       </div>
     </>
