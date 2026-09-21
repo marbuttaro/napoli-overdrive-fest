@@ -46,11 +46,21 @@
 
   --content-width: 1240px;
 
-  /* Modulo della griglia — 1/4 della larghezza di .site-grid. Ogni spaziatura verticale
-     prima di un module-grid deve essere un multiplo di questo valore, altrimenti i moduli
-     di quella sezione sfasano rispetto alla griglia globale. */
+  /* Modulo della griglia — 1/4 della larghezza di .site-grid (1/2 sotto i 640px, dove
+     la griglia passa a 2 colonne, vedi sotto). Ogni spaziatura verticale prima di un
+     module-grid deve essere un multiplo di questo valore, altrimenti i moduli di quella
+     sezione sfasano rispetto alla griglia globale. */
   --module: 25cqw;
 
   --shadow-glow-red: 0 0 60px rgba(255, 59, 47, 0.35);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Sotto i 640px la griglia a moduli passa da 4 a 2 colonne (vedi .module-grid in
+   global.css): ridefinendo --module qui, ogni valore derivato da esso in tutto il sito
+   (altezze riga, spacer, dimensioni testo del marquee, ecc.) segue automaticamente. */
+@media (max-width: 640px) {
+  :root {
+    --module: 50cqw;
+  }
 }

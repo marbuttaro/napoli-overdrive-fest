@@ -85,7 +85,7 @@
   }
 }
 
-@media (max-width: 860px) {
+@media (max-width: 640px) {
   .frame,
   .marqueeFrame {
     grid-column: 1 / -1;

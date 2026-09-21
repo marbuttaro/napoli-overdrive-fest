@@ -109,4 +109,10 @@
   .title {
     gap: 0.3em;
   }
+
+  .actions :global(.btn) {
+    padding: 0.7em 1.4em;
+    font-size: 0.82rem;
+    white-space: nowrap;
+  }
 }

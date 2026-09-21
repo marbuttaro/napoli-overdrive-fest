@@ -93,15 +93,47 @@
   height: var(--module);
 }
 
-@media (max-width: 860px) {
+@media (max-width: 640px) {
+  /* Titolo nel riquadro sinistro, come nelle altre sezioni (Gallery/Programma),
+     stesso criterio: tag piccolo, titolo ridotto per stare nel modulo. */
   .head {
-    grid-column: 1 / -1;
-    height: 50cqw;
+    grid-column: 1 / 2;
+    height: var(--module);
+    padding: 0 var(--space-sm) 0 calc(var(--space-sm) + var(--space-xs));
+  }
+
+  .head :global(.eyebrow) {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+  }
+
+  .head :global(.section-title) {
+    font-size: 1.35rem;
   }
 
   .info,
   .mapFrame {
     grid-column: 1 / -1;
-    grid-row: span 5;
+  }
+
+  /* Altezze dedotte dal contenuto invece di uno span fisso (che lasciava righe
+     vuote sotto mappa e indirizzo): la mappa resta comunque utilizzabile su 2
+     moduli, l'indirizzo cresce solo quanto serve al testo.
+     Mappa prima, indirizzo/contatti sotto (ordine inverso rispetto al DOM, che
+     resta invariato per il desktop e per la lettura via screen reader). */
+  .mapFrame {
+    grid-row: span 2;
+    order: 1;
+  }
+
+  .info {
+    grid-row: auto;
+    order: 2;
+  }
+
+  /* order:0 di default lo farebbe posizionare subito dopo .head, prima di mappa
+     e indirizzo (che ora hanno order:1/2): va tenuto esplicitamente per ultimo. */
+  .bottomSpacer {
+    order: 3;
   }
 }

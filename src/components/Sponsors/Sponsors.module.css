@@ -138,10 +138,6 @@
 }
 
 @media (max-width: 640px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .headingBlock,
   .marqueeBlock {
     grid-column: 1 / -1;
@@ -160,7 +156,21 @@
     height: 90px;
   }
 
+  /* Il muro statico passa da "4 moduli x 4 loghi" a un logo per modulo, due per riga:
+     .module smette di essere un elemento di griglia (i suoi .card diventano figli
+     diretti della griglia a 2 colonne). */
   .module {
-    grid-row: auto;
+    display: contents;
+  }
+
+  .card {
+    aspect-ratio: 1;
+  }
+
+  /* Solo mobile, solo momentaneo: i loghi sono ancora segnaposto (non sappiamo
+     ancora quanti saranno quelli veri), tolta un'ultima riga per non appesantire
+     troppo lo scroll. Da rimuovere quando arrivano i loghi definitivi. */
+  .module:last-of-type .card:nth-last-of-type(-n + 2) {
+    display: none;
   }
 }

@@ -10,7 +10,10 @@
   grid-template-rows: repeat(2, 1fr);
 }
 
-.textCell {
+/* Su desktop è un'unica cella (tag+titolo e testo impilati insieme, come prima);
+   su mobile si dissolve (display: contents) e .titleCell/.textCell diventano
+   due moduli indipendenti — vedi media query in fondo al file. */
+.textGroup {
   grid-column: 1 / 2;
   grid-row: 1 / 2;
   min-width: 0;
@@ -118,30 +121,80 @@
   font-size: 0.82rem;
 }
 
-@media (max-width: 860px) {
+@media (max-width: 640px) {
   .grid {
-    /* Impilato in colonna singola: se il contenuto non entra in un modulo, la riga
-       cresce invece di tagliarlo o farlo traboccare. */
+    /* Se il contenuto non entra in un modulo, la riga cresce invece di tagliarlo. */
     grid-auto-rows: minmax(var(--module), auto);
   }
 
+  /* La card diventa una vera griglia a 2 colonne (stessa logica del desktop,
+     adattata in verticale) invece di un'unica colonna impilata. */
   .card {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     grid-template-rows: none;
+    grid-auto-rows: minmax(var(--module), auto);
     grid-row: span 10;
   }
 
-  .textCell,
-  .datesCell,
-  .photoPanel {
-    grid-column: 1 / -1;
-    grid-row: auto;
-    border-right: none;
-    overflow: visible;
+  /* Si dissolve: titleCell e textCell diventano celle indipendenti. */
+  .textGroup {
+    display: contents;
   }
 
-  .textCell,
+  /* Riga 1, modulo sinistro: tag + titolo. */
+  .titleCell {
+    grid-column: 1 / 2;
+    grid-row: 1;
+    min-width: 0;
+    padding: var(--space-sm);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* Tag/titolo con lo stesso criterio della Gallery: tag piccolo tipo "categoria",
+     titolo ridotto per stare nel modulo senza spezzare "Programma" a metà parola. */
+  .titleCell :global(.eyebrow) {
+    font-size: 0.5rem;
+    letter-spacing: 0.08em;
+  }
+
+  .titleCell .title {
+    font-size: 1rem;
+  }
+
+  /* Riga 2, modulo destro: testo descrittivo. */
+  .textCell {
+    grid-column: 2 / 3;
+    grid-row: 2;
+    min-width: 0;
+    padding: var(--space-sm) var(--space-md);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-xs);
+  }
+
+  /* Righe 3-4, entrambe le colonne: i pulsanti data occupano un blocco di 4 moduli
+     (2 di larghezza, 2 di altezza) e restano centrati al suo interno. */
   .datesCell {
-    border-bottom: 1px solid var(--border-subtle);
+    grid-column: 1 / 3;
+    grid-row: 3 / 5;
+    padding: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .days {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .photoPanel {
+    grid-column: 1 / 3;
+    grid-row: 5;
+    padding: var(--space-md);
   }
 }

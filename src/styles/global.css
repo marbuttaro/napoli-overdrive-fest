@@ -165,6 +165,15 @@ button {
   container-type: inline-size;
 }
 
+/* Sotto i 640px la griglia passa da 4 a 2 colonne: ogni sezione riposiziona i propri
+   elementi su questa base (stessa logica del desktop, adattata al formato verticale)
+   invece di limitarsi a impilarli a piena larghezza. */
+@media (max-width: 640px) {
+  .module-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 /* Riserva uno spazio verticale multiplo del modulo — usata sopra i titoli delle sezioni
    in modo che il module-grid successivo riparta sempre sul bordo di un modulo. */
 .module-spacer-1 {

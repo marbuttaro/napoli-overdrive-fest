@@ -37,3 +37,10 @@
 .top:hover {
   color: var(--accent-primary);
 }
+
+@media (max-width: 640px) {
+  .inner {
+    flex-direction: column;
+    justify-content: center;
+  }
+}

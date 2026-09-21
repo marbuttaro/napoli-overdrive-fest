@@ -15,19 +15,27 @@ const Program = () => {
     <section id="programma" className={`section ${styles.section}`}>
       <div className={`module-grid ${styles.grid}`}>
         <div className={styles.card}>
-          <div className={styles.textCell}>
-            <p className="eyebrow">Non perderti nulla</p>
-            <h2 className={`section-title ${styles.title}`}>Il programma</h2>
-            <p className={styles.text}>
-              Tre giorni di motori, show ed adrenalina nel cuore di Napoli. Scarica il
-              programma completo con orari, aree espositive e ospiti di ogni giornata.
-            </p>
+          {/* Su mobile textGroup si "dissolve" (display: contents): titleCell e textCell
+              diventano celle indipendenti della griglia a 2 colonne, invece di restare
+              impilate in un'unica colonna come su desktop. */}
+          <div className={styles.textGroup}>
+            <div className={styles.titleCell}>
+              <p className="eyebrow">Non perderti nulla</p>
+              <h2 className={`section-title ${styles.title}`}>Il programma</h2>
+            </div>
 
-            {SHOW_DOWNLOAD_CTA && (
-              <a href="/programma.pdf" download className={`btn btn-primary ${styles.cta}`}>
-                Scarica il programma (PDF)
-              </a>
-            )}
+            <div className={styles.textCell}>
+              <p className={styles.text}>
+                Tre giorni di motori, show ed adrenalina nel cuore di Napoli. Scarica il
+                programma completo con orari, aree espositive e ospiti di ogni giornata.
+              </p>
+
+              {SHOW_DOWNLOAD_CTA && (
+                <a href="/programma.pdf" download className={`btn btn-primary ${styles.cta}`}>
+                  Scarica il programma (PDF)
+                </a>
+              )}
+            </div>
           </div>
 
           <div className={styles.datesCell}>
