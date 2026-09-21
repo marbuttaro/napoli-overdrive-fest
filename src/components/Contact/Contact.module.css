@@ -125,10 +125,11 @@
     font-size: 1.35rem;
   }
 
-  /* Mappa su 2 moduli di altezza; Location+Date e Contatti+social affiancati
-     un modulo ciascuno, un solo rigo in tutto (niente più righe vuote sotto).
-     Mappa prima, indirizzo/contatti sotto (ordine inverso rispetto al DOM, che
-     resta invariato per il desktop e per la lettura via screen reader). */
+  /* Mappa su 2 moduli di altezza; Location+Date e Contatti+social affiancati,
+     un modulo di larghezza ciascuno ma 2 di altezza (più respiro, erano troppo
+     stretti su un rigo solo). Mappa prima, indirizzo/contatti sotto (ordine
+     inverso rispetto al DOM, che resta invariato per il desktop e per la
+     lettura via screen reader). */
   .mapFrame {
     grid-column: 1 / -1;
     grid-row: span 2;
@@ -147,7 +148,9 @@
     padding: var(--space-sm);
     display: flex;
     flex-direction: column;
-    gap: var(--space-xs);
+    justify-content: center;
+    gap: var(--space-sm);
+    grid-row: span 2;
     order: 2;
   }
 

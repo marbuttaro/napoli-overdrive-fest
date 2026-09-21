@@ -128,16 +128,16 @@
   }
 
   /* La card diventa una vera griglia a 2 colonne (stessa logica del desktop,
-     adattata in verticale) invece di un'unica colonna impilata. 7 righe interne
-     in tutto: titolo, testo (2 righe), pulsanti (2 righe), foto (2 righe) — lo
-     span deve combaciare esattamente, altrimenti la griglia esterna riserva
-     righe vuote e l'altezza totale smette di essere un multiplo del modulo
-     (disallineando la griglia decorativa nelle sezioni successive). */
+     adattata in verticale) invece di un'unica colonna impilata. 6 righe interne
+     in tutto: titolo, testo, pulsanti (2 righe), foto (2 righe) — lo span deve
+     combaciare esattamente, altrimenti la griglia esterna riserva righe vuote
+     e l'altezza totale smette di essere un multiplo del modulo (disallineando
+     la griglia decorativa nelle sezioni successive). */
   .card {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: none;
     grid-auto-rows: minmax(var(--module), auto);
-    grid-row: span 7;
+    grid-row: span 6;
   }
 
   /* Si dissolve: titleCell e textCell diventano celle indipendenti. */
@@ -167,12 +167,11 @@
     font-size: 1rem;
   }
 
-  /* Righe 2-3, modulo sinistro (sotto il titolo): testo descrittivo. Riservate
-     esplicitamente 2 righe intere (non "auto" libero) così il totale resta un
-     multiplo del modulo anche se il testo non le riempie del tutto. */
+  /* Riga 2, modulo sinistro (sotto il titolo): testo descrittivo, ridotto
+     quel poco che serve per stare in un solo modulo (vedi .text sotto). */
   .textCell {
     grid-column: 1 / 2;
-    grid-row: 2 / 4;
+    grid-row: 2;
     min-width: 0;
     padding: var(--space-sm);
     display: flex;
@@ -181,12 +180,15 @@
     gap: var(--space-xs);
   }
 
-  /* Righe 4-5, entrambe le colonne: i pulsanti data occupano un blocco di 4 moduli
-     (2 di larghezza, 2 di altezza) e restano centrati al suo interno. Scendono di
-     una riga perché il testo ora ha una riga propria sotto il titolo. */
+  .textCell .text {
+    font-size: 0.95rem;
+  }
+
+  /* Righe 3-4, entrambe le colonne: i pulsanti data occupano un blocco di 4 moduli
+     (2 di larghezza, 2 di altezza) e restano centrati al suo interno. */
   .datesCell {
     grid-column: 1 / 3;
-    grid-row: 4 / 6;
+    grid-row: 3 / 5;
     padding: var(--space-md);
     display: flex;
     flex-direction: column;
@@ -199,13 +201,12 @@
     max-width: 320px;
   }
 
-  /* Righe 6-7, subito sotto i pulsanti senza righe vuote in mezzo. Anche qui 2
-     righe esplicite: l'immagine (16:9) a piena larghezza è già più alta di un
-     modulo da sola, "auto" libero farebbe crescere il totale a un valore non
-     multiplo del modulo. */
+  /* Righe 5-6, subito sotto i pulsanti senza righe vuote in mezzo. Righe esplicite:
+     l'immagine (16:9) a piena larghezza è già più alta di un modulo da sola,
+     "auto" libero farebbe crescere il totale a un valore non multiplo del modulo. */
   .photoPanel {
     grid-column: 1 / 3;
-    grid-row: 6 / 8;
+    grid-row: 5 / 7;
     padding: var(--space-md);
   }
 }
