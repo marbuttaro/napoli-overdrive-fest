@@ -67,7 +67,8 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 0.6em;
-  font-family: var(--font-display);
+  font-family: var(--font-body);
+  font-weight: 600;
   font-size: 0.95rem;
   letter-spacing: 0.3em;
   color: var(--accent-primary);
@@ -82,9 +83,10 @@ button {
 }
 
 .section-title {
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-size: clamp(1.7rem, 3.6vw, 2.5rem);
   color: var(--text-primary);
   margin-top: var(--space-xs);
+  overflow-wrap: break-word;
 }
 
 .btn {

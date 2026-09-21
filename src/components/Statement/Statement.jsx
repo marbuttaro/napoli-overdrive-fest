@@ -1,5 +1,6 @@
 import styles from './Statement.module.css';
-import bannerImg from '../../assets/images/gallery/gallery-07.webp';
+import bannerVideo from '../../assets/video/statement-loop.mp4';
+import bannerPoster from '../../assets/images/statement-poster.webp';
 
 const PHRASE = 'Energia, istinto, passione.';
 
@@ -21,10 +22,16 @@ const Statement = () => {
 
       <div className="module-grid">
         <div className={styles.frame}>
-          <img
-            src={bannerImg}
-            alt="Backflip in moto tra i grattacieli del Centro Direzionale di Napoli"
+          <video
             className={styles.image}
+            src={bannerVideo}
+            poster={bannerPoster}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            aria-hidden="true"
           />
           <div className={styles.overlay} aria-hidden="true" />
         </div>

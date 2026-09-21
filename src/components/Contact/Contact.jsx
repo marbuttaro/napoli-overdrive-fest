@@ -35,14 +35,23 @@ const Contact = () => {
           </div>
 
           <div className={styles.social}>
-            <a href="#" aria-label="Instagram" className={styles.socialLink}>
+            <a
+              href="https://www.instagram.com/napolioverdrivefestival/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className={styles.socialLink}
+            >
               Instagram
             </a>
-            <a href="#" aria-label="Facebook" className={styles.socialLink}>
+            <a
+              href="https://www.facebook.com/p/Napoli-Overdrive-Festival-61578426957738/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              className={styles.socialLink}
+            >
               Facebook
-            </a>
-            <a href="#" aria-label="TikTok" className={styles.socialLink}>
-              TikTok
             </a>
           </div>
         </div>
@@ -56,6 +65,8 @@ const Contact = () => {
             allowFullScreen
           />
         </div>
+
+        <div className={styles.bottomSpacer} aria-hidden="true" />
       </div>
     </section>
   );

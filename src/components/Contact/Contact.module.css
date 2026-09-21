@@ -14,10 +14,6 @@
   padding: 0 var(--space-sm);
 }
 
-.head :global(.section-title) {
-  overflow-wrap: break-word;
-}
-
 .grid {
   /* Pannelli di testo (non foto): possono crescere oltre il modulo se il contenuto
      impilato su mobile non ci sta, invece di tagliarlo o farlo traboccare. */
@@ -26,13 +22,13 @@
 
 .info {
   grid-column: 4 / 5;
-  grid-row: 2 / 4;
+  grid-row: 2 / 3;
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   padding: var(--space-md);
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
+  gap: var(--space-sm);
 }
 
 .infoTitle {
@@ -88,6 +84,13 @@
   height: 100%;
   border: 0;
   filter: invert(90%) hue-rotate(180deg) contrast(0.85) brightness(0.95);
+}
+
+/* Riga di chiusura in fondo alla pagina: nessun contenuto, solo lo sfondo/griglia
+   decorativa condivisa, per dare respiro sotto mappa e testi di contatto. */
+.bottomSpacer {
+  grid-column: 1 / -1;
+  height: var(--module);
 }
 
 @media (max-width: 860px) {

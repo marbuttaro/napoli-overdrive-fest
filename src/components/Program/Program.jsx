@@ -1,36 +1,48 @@
+import { useState } from 'react';
 import styles from './Program.module.css';
 import helmetsImg from '../../assets/images/helmets.webp';
+import { PROGRAM_DAYS } from './programDays';
+import ProgramDayModal from './ProgramDayModal';
 
-const DAYS = [
-  { date: '2 Ottobre', label: 'Apertura & Esposizioni' },
-  { date: '3 Ottobre', label: 'Show & Competizioni' },
-  { date: '4 Ottobre', label: 'Gran Finale' },
-];
+// Il PDF del programma non è ancora pronto: pulsante nascosto momentaneamente,
+// da riattivare (rimettere a true) quando il file sarà disponibile.
+const SHOW_DOWNLOAD_CTA = false;
 
 const Program = () => {
+  const [activeDay, setActiveDay] = useState(null);
+
   return (
     <section id="programma" className={`section ${styles.section}`}>
       <div className={`module-grid ${styles.grid}`}>
         <div className={styles.card}>
           <div className={styles.textCell}>
             <p className="eyebrow">Non perderti nulla</p>
-            <h2 className="section-title">Il programma</h2>
+            <h2 className={`section-title ${styles.title}`}>Il programma</h2>
             <p className={styles.text}>
               Tre giorni di motori, show ed adrenalina nel cuore di Napoli. Scarica il
               programma completo con orari, aree espositive e ospiti di ogni giornata.
             </p>
 
-            <a href="/programma.pdf" download className={`btn btn-primary ${styles.cta}`}>
-              Scarica il programma (PDF)
-            </a>
+            {SHOW_DOWNLOAD_CTA && (
+              <a href="/programma.pdf" download className={`btn btn-primary ${styles.cta}`}>
+                Scarica il programma (PDF)
+              </a>
+            )}
           </div>
 
           <div className={styles.datesCell}>
             <ul className={styles.days}>
-              {DAYS.map((day) => (
-                <li key={day.date} className={styles.day}>
-                  <span className={styles.dayDate}>{day.date}</span>
-                  <span className={styles.dayLabel}>{day.label}</span>
+              {PROGRAM_DAYS.map((day) => (
+                <li key={day.date}>
+                  <button
+                    type="button"
+                    className={styles.day}
+                    onClick={() => setActiveDay(day)}
+                    aria-haspopup="dialog"
+                  >
+                    <span className={styles.dayWeekday}>{day.weekday}</span>
+                    <span className={styles.dayDate}>{day.date}</span>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -41,6 +53,8 @@ const Program = () => {
           </div>
         </div>
       </div>
+
+      <ProgramDayModal day={activeDay} onClose={() => setActiveDay(null)} />
     </section>
   );
 };

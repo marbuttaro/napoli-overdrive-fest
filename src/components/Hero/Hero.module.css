@@ -52,7 +52,8 @@
 }
 
 .date {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
+  font-weight: 600;
   letter-spacing: 0.15em;
   font-size: clamp(1.1rem, 2.5vw, 1.6rem);
   color: var(--accent-primary);

@@ -2,28 +2,117 @@
   padding: 0;
 }
 
-.head {
-  grid-column: 1 / 2;
-  grid-row: 1 / 2;
-  min-width: 0;
-  height: var(--module);
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
   overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.grid {
+  /* Riga del titolo e del marquee: possono crescere oltre il modulo se il
+     contenuto non ci sta, invece di tagliarlo. */
+  grid-auto-rows: minmax(var(--module), auto);
+}
+
+/* Riga 1: titolo, sui due moduli centrali della griglia a 4 colonne. */
+.headingBlock {
+  grid-column: 2 / 4;
+  grid-row: 1;
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  padding: 0 var(--space-sm);
+  text-align: center;
+  padding: var(--space-lg) var(--space-md) var(--space-sm);
 }
 
-.intro {
-  color: var(--text-secondary);
-  margin-top: var(--space-xs);
-  font-size: 1.2rem;
-  line-height: 1.4;
-  overflow: hidden;
+.title {
+  margin: 0;
 }
 
-.module {
+/* Riga 2: striscia di loghi che scorre, sempre sui due moduli centrali. */
+.marqueeBlock {
+  grid-column: 2 / 4;
   grid-row: 2;
+  display: flex;
+  align-items: center;
+  padding: var(--space-sm) var(--space-md) var(--space-lg);
+}
+
+.marqueeFrame {
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 8%,
+    #000 92%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 8%,
+    #000 92%,
+    transparent 100%
+  );
+}
+
+.track {
+  display: flex;
+  width: max-content;
+}
+
+.group {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--space-md);
+  padding-right: var(--space-md);
+  animation: marquee 32s linear infinite;
+}
+
+.logoCard {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 120px;
+  padding: var(--space-xs);
+}
+
+.logoCard img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .group {
+    animation: none;
+  }
+}
+
+/* Riga 3: il "muro" di loghi statico, invariato. */
+.module {
+  grid-row: 3;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
@@ -51,18 +140,27 @@
 @media (max-width: 640px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 50cqw;
   }
 
-  .head {
-    height: 50cqw;
+  .headingBlock,
+  .marqueeBlock {
+    grid-column: 1 / -1;
+  }
+
+  .headingBlock {
+    padding: var(--space-md) var(--space-sm) var(--space-xs);
+  }
+
+  .marqueeBlock {
+    padding: var(--space-xs) var(--space-sm) var(--space-md);
+  }
+
+  .logoCard {
+    width: 150px;
+    height: 90px;
   }
 
   .module {
     grid-row: auto;
-  }
-
-  .intro {
-    display: none;
   }
 }

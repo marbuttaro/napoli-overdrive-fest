@@ -28,8 +28,8 @@
   --border-subtle: rgba(253, 253, 240, 0.1);
 
   /* Tipografia */
-  --font-display: 'Bebas Neue', 'Arial Narrow', sans-serif;
-  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'ethnocentric', 'Arial Narrow', sans-serif;
+  --font-body: 'TikTok Sans', system-ui, -apple-system, sans-serif;
 
   /* Forme — rettangoli stondati coerenti col logo */
   --radius-sm: 10px;
