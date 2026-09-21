@@ -21,24 +21,14 @@
 }
 
 /* Su desktop è un'unico riquadro (Location, Date, Contatti e social impilati,
-   come prima); su mobile si dissolve e infoLeft/infoRight diventano due moduli
-   affiancati — vedi media query in fondo al file. */
+   come prima); su mobile si dissolve e i 4 blocchi diventano altrettanti
+   moduli della griglia 2x2 — vedi media query in fondo al file. */
 .infoGroup {
   grid-column: 4 / 5;
   grid-row: 2 / 3;
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   padding: var(--space-md);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
-}
-
-/* infoLeft/infoRight sono semplici contenitori di flusso (Location+Date /
-   Contatti+social) tenuti distanziati come lo erano i 4 blocchi originari,
-   sia impilati su desktop sia affiancati nei moduli su mobile. */
-.infoLeft,
-.infoRight {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
@@ -125,11 +115,10 @@
     font-size: 1.35rem;
   }
 
-  /* Mappa su 2 moduli di altezza; Location+Date e Contatti+social affiancati,
-     un modulo di larghezza ciascuno ma 2 di altezza (più respiro, erano troppo
-     stretti su un rigo solo). Mappa prima, indirizzo/contatti sotto (ordine
-     inverso rispetto al DOM, che resta invariato per il desktop e per la
-     lettura via screen reader). */
+  /* Mappa su 2 moduli di altezza; sotto, griglia 2x2 con un blocco per modulo:
+     Location e Contatti in alto, Date e Social in basso. Mappa prima, blocchi
+     sotto (ordine inverso rispetto al DOM, che resta invariato per il desktop
+     e per la lettura via screen reader). */
   .mapFrame {
     grid-column: 1 / -1;
     grid-row: span 2;
@@ -140,8 +129,10 @@
     display: contents;
   }
 
-  .infoLeft,
-  .infoRight {
+  .locationCell,
+  .dateCell,
+  .contattiCell,
+  .socialCell {
     min-width: 0;
     background: var(--bg-card);
     border: 1px solid var(--border-subtle);
@@ -149,17 +140,27 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: var(--space-sm);
-    grid-row: span 2;
     order: 2;
   }
 
-  .infoLeft {
+  .locationCell {
     grid-column: 1 / 2;
+    grid-row: 4;
   }
 
-  .infoRight {
+  .contattiCell {
     grid-column: 2 / 3;
+    grid-row: 4;
+  }
+
+  .dateCell {
+    grid-column: 1 / 2;
+    grid-row: 5;
+  }
+
+  .socialCell {
+    grid-column: 2 / 3;
+    grid-row: 5;
   }
 
   .infoTitle {
@@ -172,6 +173,7 @@
 
   .social {
     margin-top: 0;
+    align-items: center;
   }
 
   /* order:0 di default lo farebbe posizionare subito dopo .head, prima di mappa
