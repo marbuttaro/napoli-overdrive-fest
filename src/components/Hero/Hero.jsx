@@ -24,7 +24,7 @@ const Hero = () => {
 
         <div className={styles.actions}>
           <a href="#programma" className="btn btn-primary">
-            Scarica il programma
+            Scopri il programma
           </a>
           <a href="#gallery" className="btn btn-outline">
             Guarda la gallery
