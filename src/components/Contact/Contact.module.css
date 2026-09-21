@@ -129,18 +129,30 @@
     display: contents;
   }
 
+  /* Niente bordo sui singoli moduli: un bordo per cella, dove due celle si
+     toccano (qui, e contro la mappa sopra), si sommava a quello della cella
+     adiacente creando un doppio filo. Il colore di sfondo basta a distinguerle,
+     la griglia decorativa già segna i confini dei moduli senza raddoppiarli. */
   .locationCell,
   .dateCell,
   .contattiCell,
   .socialCell {
     min-width: 0;
     background: var(--bg-card);
-    border: 1px solid var(--border-subtle);
     padding: var(--space-sm);
     display: flex;
     flex-direction: column;
     justify-content: center;
     order: 2;
+  }
+
+  /* Allineati in alto (non centrati) così "Location" e "Contatti" partono
+     dalla stessa altezza: i due testi hanno lunghezze diverse (indirizzo su
+     2 righe, email su 1), centrarli li avrebbe sfalsati verticalmente. */
+  .locationCell,
+  .contattiCell {
+    justify-content: flex-start;
+    padding-top: var(--space-md);
   }
 
   .locationCell {
