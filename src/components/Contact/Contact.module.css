@@ -20,12 +20,25 @@
   grid-auto-rows: minmax(var(--module), auto);
 }
 
-.info {
+/* Su desktop è un'unico riquadro (Location, Date, Contatti e social impilati,
+   come prima); su mobile si dissolve e infoLeft/infoRight diventano due moduli
+   affiancati — vedi media query in fondo al file. */
+.infoGroup {
   grid-column: 4 / 5;
   grid-row: 2 / 3;
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+/* infoLeft/infoRight sono semplici contenitori di flusso (Location+Date /
+   Contatti+social) tenuti distanziati come lo erano i 4 blocchi originari,
+   sia impilati su desktop sia affiancati nei moduli su mobile. */
+.infoLeft,
+.infoRight {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
@@ -41,6 +54,7 @@
   color: var(--text-primary);
   opacity: 0.9;
   line-height: 1.5;
+  overflow-wrap: break-word;
 }
 
 .infoText a {
@@ -111,24 +125,50 @@
     font-size: 1.35rem;
   }
 
-  .info,
-  .mapFrame {
-    grid-column: 1 / -1;
-  }
-
-  /* Altezze dedotte dal contenuto invece di uno span fisso (che lasciava righe
-     vuote sotto mappa e indirizzo): la mappa resta comunque utilizzabile su 2
-     moduli, l'indirizzo cresce solo quanto serve al testo.
+  /* Mappa su 2 moduli di altezza; Location+Date e Contatti+social affiancati
+     un modulo ciascuno, un solo rigo in tutto (niente più righe vuote sotto).
      Mappa prima, indirizzo/contatti sotto (ordine inverso rispetto al DOM, che
      resta invariato per il desktop e per la lettura via screen reader). */
   .mapFrame {
+    grid-column: 1 / -1;
     grid-row: span 2;
     order: 1;
   }
 
-  .info {
-    grid-row: auto;
+  .infoGroup {
+    display: contents;
+  }
+
+  .infoLeft,
+  .infoRight {
+    min-width: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    padding: var(--space-sm);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
     order: 2;
+  }
+
+  .infoLeft {
+    grid-column: 1 / 2;
+  }
+
+  .infoRight {
+    grid-column: 2 / 3;
+  }
+
+  .infoTitle {
+    font-size: 0.95rem;
+  }
+
+  .infoText {
+    font-size: 0.9rem;
+  }
+
+  .social {
+    margin-top: 0;
   }
 
   /* order:0 di default lo farebbe posizionare subito dopo .head, prima di mappa

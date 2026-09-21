@@ -12,47 +12,53 @@ const Contact = () => {
           <h2 className="section-title">Contatti &amp; Mappa</h2>
         </div>
 
-        <div className={styles.info}>
-          <div>
-            <h3 className={styles.infoTitle}>Location</h3>
-            <p className={styles.infoText}>
-              Centro Direzionale di Napoli
-              <br />
-              Napoli, Italia
-            </p>
+        {/* Su mobile infoGroup si dissolve (display: contents): infoLeft e infoRight
+            diventano due moduli affiancati invece di restare impilati in uno solo. */}
+        <div className={styles.infoGroup}>
+          <div className={styles.infoLeft}>
+            <div>
+              <h3 className={styles.infoTitle}>Location</h3>
+              <p className={styles.infoText}>
+                Centro Direzionale di Napoli
+                <br />
+                Napoli, Italia
+              </p>
+            </div>
+
+            <div>
+              <h3 className={styles.infoTitle}>Date</h3>
+              <p className={styles.infoText}>2&ndash;4 Ottobre 2026</p>
+            </div>
           </div>
 
-          <div>
-            <h3 className={styles.infoTitle}>Date</h3>
-            <p className={styles.infoText}>2&ndash;4 Ottobre 2026</p>
-          </div>
+          <div className={styles.infoRight}>
+            <div>
+              <h3 className={styles.infoTitle}>Contatti</h3>
+              <p className={styles.infoText}>
+                <a href="mailto:info@napoliOverdriveFest.it">info@napoliOverdriveFest.it</a>
+              </p>
+            </div>
 
-          <div>
-            <h3 className={styles.infoTitle}>Contatti</h3>
-            <p className={styles.infoText}>
-              <a href="mailto:info@napoliOverdriveFest.it">info@napoliOverdriveFest.it</a>
-            </p>
-          </div>
-
-          <div className={styles.social}>
-            <a
-              href="https://www.instagram.com/napolioverdrivefestival/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-              className={styles.socialLink}
-            >
-              Instagram
-            </a>
-            <a
-              href="https://www.facebook.com/p/Napoli-Overdrive-Festival-61578426957738/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook"
-              className={styles.socialLink}
-            >
-              Facebook
-            </a>
+            <div className={styles.social}>
+              <a
+                href="https://www.instagram.com/napolioverdrivefestival/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className={styles.socialLink}
+              >
+                Instagram
+              </a>
+              <a
+                href="https://www.facebook.com/p/Napoli-Overdrive-Festival-61578426957738/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className={styles.socialLink}
+              >
+                Facebook
+              </a>
+            </div>
           </div>
         </div>
 
