@@ -61,13 +61,18 @@ const Gallery = () => {
   return (
     <section id="gallery" className={`section ${styles.section}`}>
       <div className={`module-grid ${styles.grid}`}>
-        <div className={styles.head}>
-          <p className="eyebrow">Edizione precedente</p>
-          <h2 className="section-title">Gallery</h2>
-          <p className={styles.intro}>
-            Un assaggio dell&apos;energia di Napoli Overdrive Festival. Sfoglia la gallery per
-            iniziare a scaldare i motori in vista della prossima edizione.
-          </p>
+        <div className={styles.headGroup}>
+          <div className={styles.titleCell}>
+            <p className="eyebrow">Edizione precedente</p>
+            <h2 className="section-title">Gallery</h2>
+          </div>
+
+          <div className={styles.textCell}>
+            <p className={styles.intro}>
+              Un assaggio dell&apos;energia di Napoli Overdrive Festival. Sfoglia la gallery per
+              iniziare a scaldare i motori in vista della prossima edizione.
+            </p>
+          </div>
         </div>
 
         {PHOTOS.map((photo) => (
