@@ -73,6 +73,14 @@ const Statement = () => {
       <p className={styles.srOnly}>{PHRASE}</p>
 
       <div className="module-grid">
+        <div className={styles.lead}>
+          <p>
+            Il più grande festival dedicato
+            <br />
+            al mondo dei motori nel Sud Italia.
+          </p>
+        </div>
+
         <div className={styles.frame}>
           <video
             ref={videoRef}

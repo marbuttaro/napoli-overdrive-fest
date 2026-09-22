@@ -34,7 +34,9 @@ const Contact = () => {
           <div className={styles.contattiCell}>
             <h3 className={styles.infoTitle}>Contatti</h3>
             <p className={styles.infoText}>
-              <a href="mailto:info@napoliOverdriveFest.it">info@napoliOverdriveFest.it</a>
+              <a href="mailto:commerciale@napolioverdrivefestival.it">
+                commerciale@napolioverdrivefestival.it
+              </a>
             </p>
           </div>
 

@@ -65,8 +65,8 @@ const Gallery = () => {
           <p className="eyebrow">Edizione precedente</p>
           <h2 className="section-title">Gallery</h2>
           <p className={styles.intro}>
-            Un assaggio dell&apos;energia di Overdrive Fest. La gallery completa con le foto
-            della nuova edizione arriverà presto.
+            Un assaggio dell&apos;energia di Napoli Overdrive Festival. Sfoglia la gallery per
+            iniziare a scaldare i motori in vista della prossima edizione.
           </p>
         </div>
 

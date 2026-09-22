@@ -20,7 +20,7 @@ const Hero = () => {
           <img src={logoFestival} alt="Overdrive Fest — Napoli" className={styles.logo} />
         </h1>
 
-        <p className={styles.date}>Napoli &middot; 2&ndash;4 Ottobre 2026</p>
+        <p className={styles.date}>Napoli &middot; 2|3|4 Ottobre 2026</p>
 
         <div className={styles.actions}>
           <a href="#programma" className="btn btn-primary">

@@ -26,7 +26,7 @@ const Program = () => {
 
             <div className={styles.textCell}>
               <p className={styles.text}>
-                Tre giorni di motori, show ed adrenalina nel cuore di Napoli. Scarica il
+                Tre giorni di motori, show ed adrenalina nel cuore di Napoli. Scopri il
                 programma completo con orari, aree espositive e ospiti di ogni giornata.
               </p>
 
