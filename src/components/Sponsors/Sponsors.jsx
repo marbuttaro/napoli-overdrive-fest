@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import styles from './Sponsors.module.css';
 import distintivoFosSud from '../../assets/images/partner-logos/distintivo-fos-sud.png';
 import comuneNapoli from '../../assets/images/partner-logos/comune-napoli.png';
@@ -24,7 +25,28 @@ const LogoGroup = () => (
   </div>
 );
 
+// Loghi del muro caricati dalla dashboard /admin (vedi api/logos.js): un URL per
+// posizione, oppure null dove non c'è ancora un logo e resta il segnaposto.
+const useWallLogos = () => {
+  const [logos, setLogos] = useState([]);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    fetch('/api/logos', { signal: controller.signal })
+      .then((response) => (response.ok ? response.json() : null))
+      .then((data) => {
+        if (Array.isArray(data?.logos)) setLogos(data.logos);
+      })
+      .catch(() => {});
+    return () => controller.abort();
+  }, []);
+
+  return logos;
+};
+
 const Sponsors = () => {
+  const wallLogos = useWallLogos();
+
   return (
     <section id="sponsor" className={`section ${styles.section}`}>
       <p className={styles.srOnly}>
@@ -48,12 +70,15 @@ const Sponsors = () => {
         {Array.from({ length: MODULE_COUNT }).map((_, moduleIndex) => (
           // eslint-disable-next-line react/no-array-index-key
           <div key={moduleIndex} className={styles.module}>
-            {Array.from({ length: LOGOS_PER_MODULE }).map((__, logoIndex) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <div key={logoIndex} className={styles.card}>
-                <span>LOGO</span>
-              </div>
-            ))}
+            {Array.from({ length: LOGOS_PER_MODULE }).map((__, logoIndex) => {
+              const src = wallLogos[moduleIndex * LOGOS_PER_MODULE + logoIndex];
+              return (
+                // eslint-disable-next-line react/no-array-index-key
+                <div key={logoIndex} className={styles.card}>
+                  {src ? <img src={src} alt="Logo partner" loading="lazy" /> : <span>LOGO</span>}
+                </div>
+              );
+            })}
           </div>
         ))}
       </div>

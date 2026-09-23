@@ -132,6 +132,12 @@
   transition: border-color 0.25s var(--ease-out), color 0.25s var(--ease-out);
 }
 
+.card img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+}
+
 .card:hover {
   border-color: var(--accent-primary);
   color: var(--accent-primary);

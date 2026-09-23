@@ -27,3 +27,7 @@ dist-ssr
 # Sorgenti grafiche originali (.ai/.psd/foto ad alta risoluzione) — non necessarie al sito,
 # le versioni ottimizzate per il web vivono in src/assets e public/
 /design
+
+# Variabili d'ambiente locali (credenziali admin, token Blob)
+.env*
+!.env.example
