@@ -4,7 +4,7 @@ import { deleteLogo, getLogos, MAX_UPLOAD_BYTES, parseSlot, saveLogo } from '../
 
 const NO_STORE = { 'Cache-Control': 'no-store' };
 
-// GET                 → stato della sessione e loghi attuali (senza cache)
+// GET                 → loghi attuali (senza cache) e ambiente (production/preview/development)
 // PUT    ?slot=1..16  → body: immagine PNG/JPEG/WebP, salvata come WebP
 // DELETE ?slot=1..16  → svuota la posizione
 export default async function handler(req, res) {
@@ -15,7 +15,8 @@ export default async function handler(req, res) {
 
   try {
     if (req.method === 'GET') {
-      return sendJson(res, 200, { logos: await getLogos() }, NO_STORE);
+      const environment = process.env.VERCEL_ENV || 'development';
+      return sendJson(res, 200, { logos: await getLogos(), environment }, NO_STORE);
     }
 
     const slot = parseSlot(getQuery(req).get('slot'));

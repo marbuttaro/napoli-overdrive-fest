@@ -160,6 +160,15 @@
   color: var(--accent-primary);
 }
 
+.envNotice {
+  margin-top: var(--space-sm);
+  padding: 0.6rem 0.9rem;
+  font-size: 0.9rem;
+  color: var(--color-orange);
+  border: 1px solid currentColor;
+  border-radius: var(--radius-sm);
+}
+
 /* Stessa disposizione del sito: 4 moduli da 2x2 loghi. */
 .modules {
   display: grid;

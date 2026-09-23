@@ -123,7 +123,7 @@ const LogoSlot = ({ slot, url, busy, onUpload, onRemove }) => {
   );
 };
 
-const Dashboard = ({ initialLogos, onLogout }) => {
+const Dashboard = ({ initialLogos, environment, onLogout }) => {
   const [logos, setLogos] = useState(initialLogos);
   const [busySlots, setBusySlots] = useState(() => new Set());
   const [message, setMessage] = useState(null);
@@ -213,6 +213,12 @@ const Dashboard = ({ initialLogos, onLogout }) => {
           </p>
         </div>
 
+        {environment !== 'production' && (
+          <p className={styles.envNotice}>
+            Ambiente di prova ({environment}): i loghi caricati qui non compaiono sul sito pubblico.
+          </p>
+        )}
+
         <p
           className={`${styles.message} ${message?.type === 'error' ? styles.messageError : ''}`}
           role="status"
@@ -246,15 +252,15 @@ const Dashboard = ({ initialLogos, onLogout }) => {
 };
 
 const Admin = () => {
-  // null = verifica in corso, false = da autenticare, array = loghi (autenticato)
-  const [logos, setLogos] = useState(null);
+  // null = verifica in corso, false = da autenticare, oggetto = dati (autenticato)
+  const [data, setData] = useState(null);
   const [loadError, setLoadError] = useState('');
 
   const load = () =>
     request('/api/admin/logos')
-      .then((data) => setLogos(data.logos))
+      .then(setData)
       .catch((err) => {
-        if (err.status === 401) setLogos(false);
+        if (err.status === 401) setData(false);
         else setLoadError(err.message);
       });
 
@@ -263,9 +269,11 @@ const Admin = () => {
   }, []);
 
   if (loadError) return <p className={styles.loading}>Errore: {loadError}</p>;
-  if (logos === null) return <p className={styles.loading}>Caricamento…</p>;
-  if (logos === false) return <LoginForm onLogin={load} />;
-  return <Dashboard initialLogos={logos} onLogout={() => setLogos(false)} />;
+  if (data === null) return <p className={styles.loading}>Caricamento…</p>;
+  if (data === false) return <LoginForm onLogin={load} />;
+  return (
+    <Dashboard initialLogos={data.logos} environment={data.environment} onLogout={() => setData(false)} />
+  );
 };
 
 export default Admin;

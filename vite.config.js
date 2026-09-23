@@ -33,8 +33,11 @@ function devApi() {
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
   // Rende disponibili alle funzioni /api in sviluppo le variabili di .env
-  // (ADMIN_*, BLOB_READ_WRITE_TOKEN), che non hanno il prefisso VITE_.
-  Object.assign(process.env, { ...loadEnv(mode, process.cwd(), ''), ...process.env })
+  // (ADMIN_*, BLOB_READ_WRITE_TOKEN), che non hanno il prefisso VITE_. Mai nei test:
+  // devono girare isolati, senza credenziali né token reali.
+  if (mode !== 'test') {
+    Object.assign(process.env, { ...loadEnv(mode, process.cwd(), ''), ...process.env })
+  }
 
   return {
     plugins: [react(), devApi()],
@@ -45,6 +48,12 @@ export default defineConfig(({ mode }) => {
           admin: fileURLToPath(new URL('./admin/index.html', import.meta.url)),
         },
       },
+    },
+    test: {
+      include: ['tests/**/*.test.{js,jsx}'],
+      environment: 'node',
+      restoreMocks: true,
+      unstubEnvs: true,
     },
   }
 })
