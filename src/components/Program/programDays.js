@@ -1,4 +1,5 @@
-// Contenuti del calendario, trascritti da "design/Calendario sito web.ai"
+// Contenuti del calendario, trascritti da
+// "design/programma aggiornato/calendar - locandina a3 overdrive festival 4.pdf"
 // (gerarchia: giorno della settimana > orario > titolo evento > sottotitolo).
 export const PROGRAM_DAYS = [
   {
@@ -8,17 +9,25 @@ export const PROGRAM_DAYS = [
     label: 'Apertura & Esposizioni',
     entry: 'Ingresso Gratuito',
     schedule: [
-      { time: '09:00', title: 'Start' },
-      { time: '09:30', title: 'Pit Stop con ANM' },
+      { time: '09:30', title: 'Start' },
+      { time: '09:30', title: 'Pit Stop a squadre (ANM)' },
       { time: '10:00', title: 'Corsi di "Guida Sicura"' },
-      { time: '11:30', title: 'Esibizione Stuntman moto, Alvaro dal Farra' },
+      {
+        time: '10:30',
+        title: 'Convegno',
+        subtitle: 'Tecnologia per la sicurezza stradale',
+      },
+      { time: '11:30', title: 'Esibizione: Fmx e stunt bike by Dal Farra' },
+      { time: '12:00', title: 'Raduno moto NMF' },
       { time: '16:00', title: 'Pit Stop' },
       {
         time: '17:00',
         title: 'Convegno',
         subtitle: 'La sicurezza stradale e la sicurezza sul lavoro',
       },
-      { time: '18:30', title: 'Esibizione Stuntman moto, Alvaro dal Farra' },
+      { time: '18:30', title: 'Esibizione: Fmx e stunt bike by Dal Farra' },
+      { time: '19:00', title: 'DJ Set by Radio Marte' },
+      { time: '23:00', title: 'Chiusura' },
     ],
   },
   {
@@ -30,11 +39,14 @@ export const PROGRAM_DAYS = [
     schedule: [
       { time: '11:00', title: 'Start' },
       { time: '11:30', title: 'Pit Stop' },
-      { time: '11:30', title: 'Esibizione Stuntman moto, Alvaro dal Farra' },
+      { time: '11:30', title: 'Esibizione: Fmx e stunt bike by Dal Farra' },
+      { time: '12:00', title: 'Raduno moto NMF' },
       { time: '12:30', title: 'Corso + esame "Bici Patente"' },
-      { time: '16:00', title: 'Esibizione Stuntman moto, Alvaro dal Farra' },
+      { time: '16:00', title: 'Esibizione: Fmx e stunt bike by Dal Farra' },
       { time: '16:30', title: 'Pit Stop' },
-      { time: '18:00', title: 'Esibizione Stuntman moto, Alvaro dal Farra' },
+      { time: '18:00', title: 'Esibizione: Fmx e stunt bike by Dal Farra' },
+      { time: '19:00', title: 'DJ Set - Radio Marte' },
+      { time: '23:00', title: 'Chiusura' },
     ],
   },
   {
@@ -46,11 +58,14 @@ export const PROGRAM_DAYS = [
     schedule: [
       { time: '11:00', title: 'Start' },
       { time: '11:30', title: 'Pit Stop' },
-      { time: '11:30', title: 'Esibizione Stuntman moto, Alvaro dal Farra' },
-      { time: '12:00', title: 'Parata Auto "Tour Exclusive"' },
-      { time: '16:00', title: 'Esibizione Stuntman moto, Alvaro dal Farra' },
-      { time: '16:30', title: 'Pit Stop' },
-      { time: '18:00', title: 'Esibizione Stuntman moto, Alvaro dal Farra' },
+      { time: '11:30', title: 'Esibizione: Fmx e stunt bike by Dal Farra' },
+      { time: '12:00', title: 'Raduno moto NMF' },
+      { time: '12:30', title: 'Parata Auto "Tour Exclusive"' },
+      { time: '16:00', title: 'Esibizione: Fmx e stunt bike by Dal Farra' },
+      { time: '16:30', title: 'Pit Stop a squadre (ANM)' },
+      { time: '17:00', title: 'DJ Set by Radio Marte' },
+      { time: '18:00', title: 'Esibizione: Fmx e stunt bike by Dal Farra' },
+      { time: '19:00', title: 'Chiusura' },
     ],
   },
 ];
