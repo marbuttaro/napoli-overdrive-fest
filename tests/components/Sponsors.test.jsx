@@ -12,13 +12,13 @@ const wallImages = (container) => [...container.querySelectorAll('img[alt="Logo 
 describe('Sponsors', () => {
   it('mostra 16 segnaposto finché i loghi non sono caricati', () => {
     mockFetch(() => new Promise(() => {}));
-    render(<Sponsors />);
+    render(<Sponsors showWall />);
     expect(screen.getAllByText('LOGO')).toHaveLength(16);
   });
 
   it('richiede i loghi a /api/logos', () => {
     mockFetch(() => jsonResponse({ logos: [] }));
-    render(<Sponsors />);
+    render(<Sponsors showWall />);
     expect(fetch).toHaveBeenCalledWith('/api/logos', expect.objectContaining({ signal: expect.any(AbortSignal) }));
   });
 
@@ -30,7 +30,7 @@ describe('Sponsors', () => {
     logos[14] = 'https://blob.test/c.webp';
     mockFetch(() => jsonResponse({ logos }));
 
-    const { container } = render(<Sponsors />);
+    const { container } = render(<Sponsors showWall />);
     await waitFor(() => expect(wallImages(container)).toHaveLength(3));
     expect(screen.getAllByText('LOGO')).toHaveLength(13);
 
@@ -51,7 +51,7 @@ describe('Sponsors', () => {
     ['la risposta non ha il formato atteso', () => jsonResponse({ logos: 'nope' })],
   ])('se %s restano i segnaposto', async (_, implementation) => {
     mockFetch(implementation);
-    const { container } = render(<Sponsors />);
+    const { container } = render(<Sponsors showWall />);
     await waitFor(() => expect(fetch).toHaveBeenCalled());
     await new Promise((resolve) => setTimeout(resolve, 0));
     expect(screen.getAllByText('LOGO')).toHaveLength(16);
@@ -64,9 +64,17 @@ describe('Sponsors', () => {
       signal = options.signal;
       return new Promise(() => {});
     });
-    const { unmount } = render(<Sponsors />);
+    const { unmount } = render(<Sponsors showWall />);
     unmount();
     expect(signal.aborted).toBe(true);
+  });
+
+  it('di default il muro è nascosto e non richiede i loghi', () => {
+    mockFetch(() => jsonResponse({ logos: [] }));
+    render(<Sponsors />);
+    expect(screen.queryAllByText('LOGO')).toHaveLength(0);
+    expect(fetch).not.toHaveBeenCalled();
+    expect(screen.getByText('Partner & Sponsor')).toBeTruthy();
   });
 
   it('il marquee dei partner resta invariato', () => {

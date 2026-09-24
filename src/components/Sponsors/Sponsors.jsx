@@ -8,6 +8,10 @@ import regioneCampania from '../../assets/images/partner-logos/regione-campania.
 const MODULE_COUNT = 4;
 const LOGOS_PER_MODULE = 4;
 
+// Muro dei loghi sponsor nascosto finché non arrivano i loghi definitivi:
+// rimettere a true per mostrarlo di nuovo.
+const SHOW_SPONSOR_WALL = false;
+
 const PARTNER_LOGOS = [
   { src: distintivoFosSud, alt: 'Comando Territoriale Sud - Esercito Italiano' },
   { src: comuneNapoli, alt: 'Comune di Napoli' },
@@ -27,10 +31,11 @@ const LogoGroup = () => (
 
 // Loghi del muro caricati dalla dashboard /admin (vedi api/logos.js): un URL per
 // posizione, oppure null dove non c'è ancora un logo e resta il segnaposto.
-const useWallLogos = () => {
+const useWallLogos = (enabled) => {
   const [logos, setLogos] = useState([]);
 
   useEffect(() => {
+    if (!enabled) return undefined;
     const controller = new AbortController();
     fetch('/api/logos', { signal: controller.signal })
       .then((response) => (response.ok ? response.json() : null))
@@ -39,13 +44,13 @@ const useWallLogos = () => {
       })
       .catch(() => {});
     return () => controller.abort();
-  }, []);
+  }, [enabled]);
 
   return logos;
 };
 
-const Sponsors = () => {
-  const wallLogos = useWallLogos();
+const Sponsors = ({ showWall = SHOW_SPONSOR_WALL }) => {
+  const wallLogos = useWallLogos(showWall);
 
   return (
     <section id="sponsor" className={`section ${styles.section}`}>
@@ -67,7 +72,7 @@ const Sponsors = () => {
           </div>
         </div>
 
-        {Array.from({ length: MODULE_COUNT }).map((_, moduleIndex) => (
+        {showWall && Array.from({ length: MODULE_COUNT }).map((_, moduleIndex) => (
           // eslint-disable-next-line react/no-array-index-key
           <div key={moduleIndex} className={styles.module}>
             {Array.from({ length: LOGOS_PER_MODULE }).map((__, logoIndex) => {
