@@ -110,17 +110,23 @@
   }
 }
 
-/* Riga 3: il "muro" di loghi statico, invariato. */
+/* Riga 3: il muro degli sponsor.
+   Bordi: il contorno dei moduli è già disegnato dalla griglia di pagina (.module-grid,
+   linee con le crocette), quindi moduli e celle non hanno bordi propri; le divisioni
+   interne a un modulo sono il suo sfondo che si vede nello spazio di 1px tra le celle.
+   Così ogni linea è singola. */
 .module {
   grid-row: 3;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  border: 1px solid var(--border-subtle);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--border-subtle);
 }
 
 .card {
-  border: 1px solid var(--border-subtle);
+  min-width: 0;
+  min-height: 0;
   background: var(--bg-card);
   display: flex;
   align-items: center;
@@ -129,18 +135,83 @@
   letter-spacing: 0.1em;
   font-size: 0.85rem;
   color: var(--text-secondary);
-  transition: border-color 0.25s var(--ease-out), color 0.25s var(--ease-out);
 }
 
 .card img {
-  width: 70%;
-  height: 70%;
   object-fit: contain;
 }
 
-.card:hover {
+/* Ogni logo sta in una targhetta uguale per tutti, con gli angoli dei pulsanti del
+   programma. Fondo: bianco #ffffff, fusione hard light, opacità 75% — su uno pseudo-
+   elemento, così la fusione riguarda solo il fondo e non il logo. */
+.plate {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(253, 253, 240, 0.25);
+  transition: border-color 0.2s var(--ease-out), transform 0.2s var(--ease-out);
+}
+
+.plate::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: #ffffff;
+  mix-blend-mode: hard-light;
+  opacity: 0.75;
+}
+
+.plate img {
+  position: relative;
+}
+
+/* Muro sponsor (un quarto di modulo per logo): targhetta e logo più grandi dei
+   partner minori, per marcare la differenza di importanza. */
+.module .plate {
+  width: 88%;
+  height: 64%;
+}
+
+.module .plate img {
+  width: 84%;
+  height: 78%;
+}
+
+/* Riga 4+: partner minori, metà (in altezza) di un quarto di modulo ciascuno. */
+.minorWall {
+  grid-column: 1 / -1;
+  grid-row: 4 / span var(--minor-module-rows);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: var(--module);
+}
+
+.minorModule {
+  display: grid;
+  /* minmax(0, …): righe sempre uguali, anche con loghi dalle proporzioni diverse */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--border-subtle);
+}
+
+.minorModule .plate {
+  width: 82%;
+  height: 70%;
+  border-radius: var(--radius-sm);
+}
+
+.minorModule .plate img {
+  width: 80%;
+  height: 72%;
+}
+
+.cardLogo:hover .plate {
   border-color: var(--accent-primary);
-  color: var(--accent-primary);
+  transform: translateY(-2px);
 }
 
 @media (max-width: 640px) {
@@ -173,10 +244,30 @@
     aspect-ratio: 1;
   }
 
-  /* Solo mobile, solo momentaneo: i loghi sono ancora segnaposto (non sappiamo
-     ancora quanti saranno quelli veri), tolta un'ultima riga per non appesantire
-     troppo lo scroll. Da rimuovere quando arrivano i loghi definitivi. */
-  .module:last-of-type .card:nth-last-of-type(-n + 2) {
+  /* I posti vuoti servono solo alla composizione desktop; su mobile i loghi
+     seguono l'ordine di lettura del muro. */
+  .cardEmpty {
     display: none;
+  }
+
+  .cardLogo {
+    order: var(--mobile-order);
+  }
+
+  /* Partner minori su mobile: 2 per riga, larghi e bassi, senza posti vuoti. */
+  .minorWall {
+    grid-row: auto;
+    /* dopo tutti i loghi del muro, che su mobile sono ordinati con "order" */
+    order: 999;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: auto;
+  }
+
+  .minorModule {
+    display: contents;
+  }
+
+  .minorModule .card {
+    aspect-ratio: 2;
   }
 }

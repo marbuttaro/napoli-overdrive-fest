@@ -1,0 +1,55 @@
+// Partner minori (fascia sotto il muro sponsor), in ordine alfabetico.
+// file = nome in src/assets/images/partner-minor-logos/ (senza .webp).
+const LOGO_FILES = import.meta.glob('../../assets/images/partner-minor-logos/*.webp', {
+  eager: true,
+  import: 'default',
+});
+
+const PARTNERS = [
+  { file: 'air-daly', alt: 'Air Daly' },
+  { file: 'altanus', alt: 'Altanus Genève' },
+  { file: 'alvaro-dal-farra', alt: 'Alvaro Dal Farra' },
+  { file: 'ase-aeronautica', alt: 'ASE Aeronautica' },
+  { file: 'aspi', alt: 'ASPI Sommelier Italiani - ASI Member' },
+  { file: 'autoimmagine', alt: 'Autoimmagine' },
+  { file: 'brilla', alt: 'Brilla!' },
+  { file: 'buglione', alt: 'Buglione Automatic' },
+  { file: 'buiano', alt: 'Buiano Restauri e Costruzioni' },
+  { file: 'centro-aktis', alt: 'Centro Aktis' },
+  { file: 'ciano-design', alt: 'Ciano Design' },
+  { file: 'club-supercar', alt: 'Club Supercar Italia' },
+  { file: 'cm-cars', alt: 'CM Cars' },
+  { file: 'cors-air-motors', alt: 'Cors-Air Motors' },
+  { file: 'esagono', alt: 'Esagono' },
+  { file: 'fishing-club', alt: 'Vesuvio Fishing Club' },
+  { file: 'gcar-service', alt: 'GCar Service' },
+  { file: 'generali', alt: 'Generali' },
+  { file: 'gm-costruzioni', alt: 'GM Costruzioni' },
+  { file: 'jsd', alt: 'Joker Studio Design' },
+  { file: 'komen', alt: 'Komen Italia' },
+  { file: 'log-i-srl', alt: 'Log.i. Srl' },
+  { file: 'm1-energia', alt: 'M1 Energia' },
+  { file: 'mc-bolt', alt: 'MC Bolt' },
+  { file: 'megaride', alt: 'Megaride' },
+  { file: 'montesarchio-motorsport', alt: 'Montesarchio Motorsport' },
+  { file: 'motum', alt: 'Motum' },
+  { file: 'nespoli', alt: 'Poderi dal Nespoli' },
+  { file: 'nmf', alt: 'NMF' },
+  { file: 'open', alt: 'OPEN Associazione Oncologia Pediatrica e Neuroblastoma' },
+  { file: 'rea-costruzioni', alt: 'Rea Costruzioni' },
+  { file: 'rea-immobiliare', alt: 'Rea Immobiliare' },
+  { file: 'servicar', alt: 'Servicar Group' },
+  { file: 'talarico', alt: 'Mario Talarico' },
+  { file: 'tamburrino-moto', alt: 'Tamburrino Moto' },
+  { file: 'u4y', alt: 'U4Y' },
+  { file: 'unina-corse', alt: 'UniNa Corse' },
+  { file: 'urania', alt: 'Urania Restauro e Costruzioni' },
+  { file: 'urbania-motors', alt: 'Urbania Motors' },
+  { file: 'vesevo', alt: 'Vesevo' },
+  { file: 'zeta-project', alt: 'Zeta Project' },
+];
+
+export const MINOR_PARTNERS = PARTNERS.map(({ file, alt }) => ({
+  src: LOGO_FILES[`../../assets/images/partner-minor-logos/${file}.webp`],
+  alt,
+}));
