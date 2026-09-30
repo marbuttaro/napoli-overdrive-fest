@@ -20,11 +20,7 @@ export const PROGRAM_DAYS = [
       { time: '11:30', title: 'Esibizione: Fmx e stunt bike by Dal Farra' },
       { time: '12:00', title: 'Raduno moto NMF' },
       { time: '16:00', title: 'Pit Stop' },
-      {
-        time: '17:00',
-        title: 'Convegno',
-        subtitle: 'La sicurezza stradale e la sicurezza sul lavoro',
-      },
+      { time: '17:30', title: 'Inaugurazione villaggio' },
       { time: '18:30', title: 'Esibizione: Fmx e stunt bike by Dal Farra' },
       { time: '19:00', title: 'DJ Set by Radio Marte' },
       { time: '23:00', title: 'Chiusura' },
